@@ -1,3 +1,11 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  mount ActionCable.server => "/cable"
+
+  root "rooms#index"
+
+  resources :rooms, only: [:create, :show], param: :uuid
+  resources :authentications, only: [:create], param: :uuid
+  get "authenticate/:room_uuid", to: "authentications#index", as: "authenticate"
+
+  resources :messages, only: [:create]
 end

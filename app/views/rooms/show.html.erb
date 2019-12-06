@@ -1,0 +1,16 @@
+<div class="app">
+  <div class="header" data-uuid="<%= @room.uuid %>"><%= @room.uuid %></div>
+
+  <div class="chat-container" data-role="chat-container"></div>
+
+  <div class="drawer">
+    <%= form_for :message, url: messages_path, method: :post, remote: true do |form| %>
+      <div class="form-group">
+        <%= form.text_area :content, placeholder: "Message", class: "form-input", autocomplete: "off", rows: 2 %>
+        <%= form.hidden_field :room_uuid, value: @room.uuid %>
+        
+        <%= button_tag "Submit", class: "button button--primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

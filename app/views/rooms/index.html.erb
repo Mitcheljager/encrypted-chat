@@ -1,0 +1,10 @@
+<%= form_for @room do |form| %>
+  <p>
+    <%= form.text_field :name, placeholder: "Name (optional)", class: "form-input" %>
+  </p>
+
+  <%= form.password_field :password, placeholder: "Password", class: "form-input" %>
+  <%= form.password_field :password_confirmation, placeholder: "Password confirmation", class: "form-input" %>
+
+  <%= button_tag "Submit", class: "button button--primary" %>
+<% end %>

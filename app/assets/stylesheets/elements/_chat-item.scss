@@ -1,0 +1,40 @@
+@keyframes chat-item-appearing {
+  from {
+    background: rgba($white, .1);
+  }
+
+  to {
+    background: rgba($white, 0);
+  }
+}
+
+.chat-item {
+  display: flex;
+  padding: .5rem 1.5rem;
+  line-height: 1.25rem;
+  animation: chat-item-appearing 1500ms;
+
+  &:first-child {
+    margin-top: auto;
+  }
+
+  &--server {
+    color: #a5a5a5;
+    font-style: italic;
+  }
+}
+
+.chat-item__user {
+  display: block;
+  padding-right: 1rem;
+  font-weight: bold;
+}
+
+.chat-item__time {
+  display: inline-block;
+  margin: .2rem 0 0 auto;
+  padding-left: 1rem;
+  font-size: 11px;
+  line-height: 1rem;
+  color: #a5a5a5;
+}

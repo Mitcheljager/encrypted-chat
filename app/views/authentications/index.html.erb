@@ -1,0 +1,9 @@
+<%= params[:room_uuid] %>
+
+<%= form_for @authentication do |form| %>
+  <%= form.hidden_field :room_uuid, value: params[:room_uuid] %>
+  <%= form.text_field :username, placeholder: "Username", class: "form-input" %>
+  <%= form.password_field :password, placeholder: "Room Password", class: "form-input" %>
+
+  <%= button_tag "Submit", class: "button button--primary" %>
+<% end %>

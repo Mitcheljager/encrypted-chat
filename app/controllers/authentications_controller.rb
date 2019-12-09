@@ -12,21 +12,24 @@ class AuthenticationsController < ApplicationController
     room_uuid = authentication_params[:room_uuid]
     @room = Room.find_by_uuid(room_uuid)
 
-    if @room && @room.authenticate(authentication_params[:password])
+    if @room
+      if @room.password_digest
+        unless @room.authenticate(authentication_params[:password])
+          send_failed_login_broadcast
+          redirect_to authenticate_path(room_uuid)
+          return
+        end
+      end
+
       generate_authentication_token
 
       if @authentication.save
         set_authentication_cookie
         redirect_to room_path(room_uuid)
       else
-        redirect_to authenticate_path(room_uuid)
-
         send_failed_login_broadcast
+        redirect_to authenticate_path(room_uuid)
       end
-    else
-      redirect_to authenticate_path(room_uuid)
-
-      send_failed_login_broadcast
     end
   end
 

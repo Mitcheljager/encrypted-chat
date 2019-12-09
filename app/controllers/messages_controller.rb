@@ -1,5 +1,7 @@
 class MessagesController < ApplicationController
   def create
+    return if message_params[:content].empty?
+
     @room = Room.find_by_uuid(message_params[:room_uuid])
     @token = Authentication.find_by_token(cookies.encrypted[:authentication_token])
     username = @token.username

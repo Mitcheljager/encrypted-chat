@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_04_004740) do
+ActiveRecord::Schema.define(version: 2019_12_06_231645) do
 
   create_table "authentications", force: :cascade do |t|
     t.text "username_ciphertext"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2019_12_04_004740) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "uuid"
+    t.string "token_bidx"
+    t.index ["token_bidx"], name: "index_authentications_on_token_bidx"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -27,6 +29,7 @@ ActiveRecord::Schema.define(version: 2019_12_04_004740) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "name_ciphertext"
+    t.integer "expiration_time", default: 0
   end
 
 end

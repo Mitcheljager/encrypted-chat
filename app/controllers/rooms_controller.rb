@@ -9,6 +9,7 @@ class RoomsController < ApplicationController
   end
 
   def show
+    @username = Authentication.find_by_token(cookies.encrypted[:authentication_token]).username
   end
 
   def create
@@ -33,7 +34,7 @@ class RoomsController < ApplicationController
   end
 
   def room_params
-    params.require(:room).permit(:name, :password, :password_confirmation)
+    params.require(:room).permit(:name, :password, :password_confirmation, :expiration_time)
   end
 
   def authenticate

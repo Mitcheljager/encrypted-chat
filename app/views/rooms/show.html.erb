@@ -1,15 +1,37 @@
-<div class="app">
-  <div class="header" data-uuid="<%= @room.uuid %>"><%= @room.uuid %></div>
+<template id="chat-item">
+  <chat-item class="chat-item">
+    <template if:true={usernamePresent}>
+      <div class="chat-item__user" data-role="username"></div>
+    </template>
 
-  <div class="chat-container" data-role="chat-container"></div>
+    <div data-role="content">
+      <slot></slot>
+    </div>
+
+    <div class="chat-item__time" data-role="timestamp"></div>
+
+    <template if:true={timerPresent}>
+      <div class="chat-item__timer" data-role="username"></div>
+    </template
+  </chat-item>
+</template>
+
+<div class="app">
+  <div class="header" data-uuid="<%= @room.uuid %>">
+    <%= @room.uuid %> <br>
+    <%= @username %> <br>
+    <small>Expiration time: <%= @room.expiration_time %> seconds</small>
+  </div>
+
+  <div class="chat-container" data-role="chat-container" data-expiration="<%= @room.expiration_time %>" data-username="<%= @username %>"></div>
 
   <div class="drawer">
-    <%= form_for :message, url: messages_path, method: :post, remote: true do |form| %>
+    <%= form_for :message, url: messages_path, method: :post, remote: true, data: { role: "chat-message" } do |form| %>
       <div class="form-group">
-        <%= form.text_area :content, placeholder: "Message", class: "form-input", autocomplete: "off", rows: 2 %>
+        <%= form.text_area :content, placeholder: "Type a message...", class: "form-input", autocomplete: "off", rows: 2 %>
         <%= form.hidden_field :room_uuid, value: @room.uuid %>
-        
-        <%= button_tag "Submit", class: "button button--primary" %>
+
+        <%= button_tag "➤", class: "submit" %>
       </div>
     <% end %>
   </div>

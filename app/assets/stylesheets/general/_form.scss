@@ -1,11 +1,41 @@
 .form-input {
   width: 100%;
   padding: .5rem .75rem;
-  background: #333336;
-  color: white;
   border: 0;
+  background: $drawer-bg;
+  color: $text-color;
+  line-height: 1rem;
+  resize: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: darken($text-color, 30%);
+  }
 }
 
 .form-group {
   display: flex;
+}
+
+.submit {
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0;
+  padding: .25rem .5rem;
+  background: transparent;
+  font-size: 1.5rem;
+  color: darken($text-color, 50%);
+
+  &:hover,
+  &:active {
+    color: darken($text-color, 20%);
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+  }
 }

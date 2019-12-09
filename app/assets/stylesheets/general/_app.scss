@@ -1,15 +1,16 @@
 .app {
   display: grid;
-  grid-template-rows: 5rem auto 5rem;
+  grid-template-rows: 5rem auto 4rem;
   height: 100vh;
-  background: #232326;
+  background: $app-bg;
 }
 
 .header {
-  padding: .5rem 1rem;
+  padding: 0.9rem 1rem;
   background: #03dac6;
-  white-space: nowrap;
+  font-size: 13px;
   color: $black;
+  white-space: nowrap;
   font-weight: bold;
   text-overflow: ellipsis;
   box-shadow: 0 5px 30px rgba($black, .5), 0 0 15px rgba($black, .5);
@@ -26,7 +27,7 @@
 }
 
 .drawer {
-  padding: 1rem;
-  border-top: 1px solid #3e3e33;
-  background: #232326;
+  padding: .5rem;
+  border-top: 1px solid $border-color;
+  background: $drawer-bg;
 }

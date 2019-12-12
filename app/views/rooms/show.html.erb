@@ -1,26 +1,12 @@
-<template id="chat-item">
-  <chat-item class="chat-item">
-    <template if:true={usernamePresent}>
-      <div class="chat-item__user" data-role="username"></div>
-    </template>
-
-    <div data-role="content">
-      <slot></slot>
-    </div>
-
-    <div class="chat-item__time" data-role="timestamp"></div>
-
-    <template if:true={timerPresent}>
-      <div class="chat-item__timer" data-role="username"></div>
-    </template
-  </chat-item>
-</template>
+<%= render "chat_item" %>
 
 <div class="app">
   <div class="header" data-uuid="<%= @room.uuid %>">
     <%= @room.uuid %> <br>
     <%= @username %> <br>
-    <small>Expiration time: <%= @room.expiration_time %> seconds</small>
+    <% if @room.expiration_time %>
+      <small>Expiration time: <%= @room.expiration_time %> seconds</small>
+    <% end %>
   </div>
 
   <div class="chat-container" data-role="chat-container" data-expiration="<%= @room.expiration_time %>" data-username="<%= @username %>"></div>
